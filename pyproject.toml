@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "booking-platform-backend"
+version = "0.1.0"
+description = ""
+authors = ["Mauricio Paz <mauricio.p@tugerente.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.6"
+psycopg2 = "^2.9.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
