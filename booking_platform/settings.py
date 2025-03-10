@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.accounts',  # Nueva ruta para accounts
-    'apps.entities',  # Nueva ruta para entities
-    'apps.reservations',  # Nueva ruta para reservations
-    'apps.core',  # Nueva ruta para reservations
-    
+    'apps.accounts',  
+    'apps.entities',  
+    'apps.core',  
+    'apps.bookings',  
+    'apps.customers',  
 ]
 
 MIDDLEWARE = [
