@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt', 
+    'corsheaders',
     'apps.entities',  
     'apps.core',  
     'apps.bookings',  
@@ -48,11 +49,19 @@ INSTALLED_APPS = [
     
 ]
 
+
+# Configuración de sesiones y cookies
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = False  # Cambia a True en producción con HTTPS
+SESSION_COOKIE_SAMESITE = 'Lax'  # Ajusta según tus necesidades
+
 AUTH_USER_MODEL = 'users.User'
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'apps.users.authentication.CookieJWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -70,6 +79,33 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = ['http://localhost:3000','http://localhost:3001']
 
+# Opcional: Permitir credenciales (si usas cookies o autenticación basada en sesiones)
+CORS_ALLOW_CREDENTIALS = True
+
+# Opcional: Permitir todos los métodos (GET, POST, etc.)
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+
+# Opcional: Permitir todos los encabezados
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,6 +114,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'booking_platform.urls'
