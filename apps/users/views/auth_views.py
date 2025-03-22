@@ -7,8 +7,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import AuthenticationFailed
 from django.conf import settings
-
-from apps.users.serializers import CustomTokenObtainPairSerializer, UserSerializer
+from apps.users.serializers.user import CustomTokenObtainPairSerializer, UserSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
